@@ -9,45 +9,17 @@
 
 import 'package:flutter/widgets.dart';
 
-class $AssetsBoundariesGen {
-  const $AssetsBoundariesGen();
-
-  /// File path: assets/boundaries/boundaries.cpg
-  String get boundariesCpg => 'assets/boundaries/boundaries.cpg';
-
-  /// File path: assets/boundaries/boundaries.dbf
-  String get boundariesDbf => 'assets/boundaries/boundaries.dbf';
-
-  /// File path: assets/boundaries/boundaries.prj
-  String get boundariesPrj => 'assets/boundaries/boundaries.prj';
-
-  /// File path: assets/boundaries/boundaries.shp
-  String get boundariesShp => 'assets/boundaries/boundaries.shp';
-
-  /// File path: assets/boundaries/boundaries.shx
-  String get boundariesShx => 'assets/boundaries/boundaries.shx';
-
-  /// List of all assets
-  List<String> get values => [
-        boundariesCpg,
-        boundariesDbf,
-        boundariesPrj,
-        boundariesShp,
-        boundariesShx
-      ];
-}
-
 class Assets {
   Assets._();
 
-  static const $AssetsBoundariesGen boundaries = $AssetsBoundariesGen();
+  static const String field1 = 'assets/field_1.zip';
   static const String missingDbf = 'assets/missing_dbf.zip';
   static const String multi = 'assets/multi.zip';
   static const String single = 'assets/single.zip';
-  static const String withSubfolders = 'assets/with_subfolders.zip';
+  static const String subFolders = 'assets/sub_folders.zip';
 
   /// List of all assets
-  List<String> get values => [missingDbf, multi, single, withSubfolders];
+  List<String> get values => [field1, missingDbf, multi, single, subFolders];
 }
 
 class AssetGenImage {

@@ -107,8 +107,8 @@ class __$$_GeoCoordinateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GeoCoordinate with DiagnosticableTreeMixin implements _GeoCoordinate {
-  const _$_GeoCoordinate({required this.lat, required this.long});
+class _$_GeoCoordinate extends _GeoCoordinate {
+  const _$_GeoCoordinate({required this.lat, required this.long}) : super._();
 
   factory _$_GeoCoordinate.fromJson(Map<String, dynamic> json) =>
       _$$_GeoCoordinateFromJson(json);
@@ -117,20 +117,6 @@ class _$_GeoCoordinate with DiagnosticableTreeMixin implements _GeoCoordinate {
   final double lat;
   @override
   final double long;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GeoCoordinate(lat: $lat, long: $long)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'GeoCoordinate'))
-      ..add(DiagnosticsProperty('lat', lat))
-      ..add(DiagnosticsProperty('long', long));
-  }
 
   @override
   bool operator ==(dynamic other) {
@@ -159,10 +145,11 @@ class _$_GeoCoordinate with DiagnosticableTreeMixin implements _GeoCoordinate {
   }
 }
 
-abstract class _GeoCoordinate implements GeoCoordinate {
+abstract class _GeoCoordinate extends GeoCoordinate {
   const factory _GeoCoordinate(
       {required final double lat,
       required final double long}) = _$_GeoCoordinate;
+  const _GeoCoordinate._() : super._();
 
   factory _GeoCoordinate.fromJson(Map<String, dynamic> json) =
       _$_GeoCoordinate.fromJson;

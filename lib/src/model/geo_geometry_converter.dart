@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'geo_coordinate.dart';
@@ -9,19 +11,25 @@ class GeoGeometryConverter implements JsonConverter<GeoGeometry, dynamic> {
 
   @override
   GeoGeometry fromJson(dynamic json) {
+    print(jsonEncode(json));
+
     if (json['type'] != 'Polygon') {
       throw UnsupportedError('Only Polygon is supported');
     }
-    if (json['coordinates'] == null) {
-      throw ArgumentError("'coordinates' is null");
+    if (json['coordinates']?.isEmpty ?? true) {
+      throw ArgumentError("'coordinates' is null or empty");
     }
 
-    final border = _mapBorder(json);
+    final jsonShapes = json['coordinates'] as List<List<List<double>>>;
+    print('>>> ${jsonShapes.length}: ${jsonShapes[0].length}');
+
+    final border = _mapJsonShape(jsonShapes[0], 0);
 
     final holes = <GeoShape>[];
     if (json['coordinates'].length > 1) {
       for (var i = 1; i < json['coordinates'].length; i++) {
-        holes.add(GeoShape(coords: json['coordinates'][i]));
+        final hole = _mapJsonShape(json, i);
+        holes.add(hole);
       }
     }
 
@@ -31,13 +39,11 @@ class GeoGeometryConverter implements JsonConverter<GeoGeometry, dynamic> {
     );
   }
 
-  GeoShape _mapBorder(json) {
-    final borderCoordsJson = json['coordinates'][0] as List<List<double>>;
-    final coords = _mapCoords(borderCoordsJson);
-    return GeoShape(coords: coords);
+  GeoShape _mapJsonShape(List<List<double>> jsonShape, int index) {
+    return GeoShape(coords: _coordsToGeoCoords(jsonShape));
   }
 
-  List<GeoCoordinate> _mapCoords(List<List<double>> borderCoordsJson) {
+  List<GeoCoordinate> _coordsToGeoCoords(List<List<double>> borderCoordsJson) {
     return borderCoordsJson
         .map((e) => GeoCoordinate(lat: e[0], long: e[1]))
         .toList(growable: false);

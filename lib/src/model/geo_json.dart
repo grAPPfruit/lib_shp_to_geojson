@@ -11,8 +11,8 @@ part 'geo_json.g.dart';
 @freezed
 class GeoJson with _$GeoJson {
   const factory GeoJson({
-    @JsonKey(name: 'type') String? type,
-    @JsonKey(name: 'bbox') List<double>? bbox,
+    @JsonKey(name: 'type') required String type,
+    @JsonKey(name: 'bbox') List<double>? boundingBox,
     @JsonKey(name: 'features') List<GeoFeature>? features,
   }) = _GeoJson;
 

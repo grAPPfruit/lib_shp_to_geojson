@@ -21,9 +21,9 @@ GeoJson _$GeoJsonFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GeoJson {
   @JsonKey(name: 'type')
-  String? get type => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'bbox')
-  List<double>? get bbox => throw _privateConstructorUsedError;
+  List<double>? get boundingBox => throw _privateConstructorUsedError;
   @JsonKey(name: 'features')
   List<GeoFeature>? get features => throw _privateConstructorUsedError;
 
@@ -38,8 +38,8 @@ abstract class $GeoJsonCopyWith<$Res> {
       _$GeoJsonCopyWithImpl<$Res, GeoJson>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') String? type,
-      @JsonKey(name: 'bbox') List<double>? bbox,
+      {@JsonKey(name: 'type') String type,
+      @JsonKey(name: 'bbox') List<double>? boundingBox,
       @JsonKey(name: 'features') List<GeoFeature>? features});
 }
 
@@ -56,18 +56,18 @@ class _$GeoJsonCopyWithImpl<$Res, $Val extends GeoJson>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? bbox = freezed,
+    Object? type = null,
+    Object? boundingBox = freezed,
     Object? features = freezed,
   }) {
     return _then(_value.copyWith(
-      type: freezed == type
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bbox: freezed == bbox
-          ? _value.bbox
-          : bbox // ignore: cast_nullable_to_non_nullable
+              as String,
+      boundingBox: freezed == boundingBox
+          ? _value.boundingBox
+          : boundingBox // ignore: cast_nullable_to_non_nullable
               as List<double>?,
       features: freezed == features
           ? _value.features
@@ -85,8 +85,8 @@ abstract class _$$_GeoJsonCopyWith<$Res> implements $GeoJsonCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') String? type,
-      @JsonKey(name: 'bbox') List<double>? bbox,
+      {@JsonKey(name: 'type') String type,
+      @JsonKey(name: 'bbox') List<double>? boundingBox,
       @JsonKey(name: 'features') List<GeoFeature>? features});
 }
 
@@ -100,18 +100,18 @@ class __$$_GeoJsonCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? bbox = freezed,
+    Object? type = null,
+    Object? boundingBox = freezed,
     Object? features = freezed,
   }) {
     return _then(_$_GeoJson(
-      type: freezed == type
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bbox: freezed == bbox
-          ? _value._bbox
-          : bbox // ignore: cast_nullable_to_non_nullable
+              as String,
+      boundingBox: freezed == boundingBox
+          ? _value._boundingBox
+          : boundingBox // ignore: cast_nullable_to_non_nullable
               as List<double>?,
       features: freezed == features
           ? _value._features
@@ -125,10 +125,10 @@ class __$$_GeoJsonCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
   const _$_GeoJson(
-      {@JsonKey(name: 'type') this.type,
-      @JsonKey(name: 'bbox') final List<double>? bbox,
+      {@JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'bbox') final List<double>? boundingBox,
       @JsonKey(name: 'features') final List<GeoFeature>? features})
-      : _bbox = bbox,
+      : _boundingBox = boundingBox,
         _features = features;
 
   factory _$_GeoJson.fromJson(Map<String, dynamic> json) =>
@@ -136,14 +136,14 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
 
   @override
   @JsonKey(name: 'type')
-  final String? type;
-  final List<double>? _bbox;
+  final String type;
+  final List<double>? _boundingBox;
   @override
   @JsonKey(name: 'bbox')
-  List<double>? get bbox {
-    final value = _bbox;
+  List<double>? get boundingBox {
+    final value = _boundingBox;
     if (value == null) return null;
-    if (_bbox is EqualUnmodifiableListView) return _bbox;
+    if (_boundingBox is EqualUnmodifiableListView) return _boundingBox;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -161,7 +161,7 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GeoJson(type: $type, bbox: $bbox, features: $features)';
+    return 'GeoJson(type: $type, boundingBox: $boundingBox, features: $features)';
   }
 
   @override
@@ -170,7 +170,7 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
     properties
       ..add(DiagnosticsProperty('type', 'GeoJson'))
       ..add(DiagnosticsProperty('type', type))
-      ..add(DiagnosticsProperty('bbox', bbox))
+      ..add(DiagnosticsProperty('boundingBox', boundingBox))
       ..add(DiagnosticsProperty('features', features));
   }
 
@@ -180,7 +180,8 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
         (other.runtimeType == runtimeType &&
             other is _$_GeoJson &&
             (identical(other.type, type) || other.type == type) &&
-            const DeepCollectionEquality().equals(other._bbox, _bbox) &&
+            const DeepCollectionEquality()
+                .equals(other._boundingBox, _boundingBox) &&
             const DeepCollectionEquality().equals(other._features, _features));
   }
 
@@ -189,7 +190,7 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
   int get hashCode => Object.hash(
       runtimeType,
       type,
-      const DeepCollectionEquality().hash(_bbox),
+      const DeepCollectionEquality().hash(_boundingBox),
       const DeepCollectionEquality().hash(_features));
 
   @JsonKey(ignore: true)
@@ -208,8 +209,8 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
 
 abstract class _GeoJson implements GeoJson {
   const factory _GeoJson(
-          {@JsonKey(name: 'type') final String? type,
-          @JsonKey(name: 'bbox') final List<double>? bbox,
+          {@JsonKey(name: 'type') required final String type,
+          @JsonKey(name: 'bbox') final List<double>? boundingBox,
           @JsonKey(name: 'features') final List<GeoFeature>? features}) =
       _$_GeoJson;
 
@@ -217,10 +218,10 @@ abstract class _GeoJson implements GeoJson {
 
   @override
   @JsonKey(name: 'type')
-  String? get type;
+  String get type;
   @override
   @JsonKey(name: 'bbox')
-  List<double>? get bbox;
+  List<double>? get boundingBox;
   @override
   @JsonKey(name: 'features')
   List<GeoFeature>? get features;

@@ -7,13 +7,11 @@ environment:
   sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
-  archive: ^3.3.9
   flutter:
     sdk: flutter
   lib_shp_to_geojson:
     path: ../
   path_provider: ^2.1.1
-  shapefile: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -24,4 +22,3 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/boundaries/

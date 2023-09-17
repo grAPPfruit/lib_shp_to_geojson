@@ -21,9 +21,8 @@ class GeoGeometry with _$GeoGeometry {
   /// {
   ///   "type":"Polygon",
   ///   "coordinates":[
-  ///     [[x0,y0], [x1,y1], [x2,y2], [x3,y3], [x0,y0]], /* border
-  ///     [[x4,y4], [x5,y5], [x6,y6], [x4,y4]],          /* hole
-  ///     [[x7,y7], [x8,y8], [x9,y9], [x7,y7]]           /* hole
+  ///     [[x0,y0], [x1,y1], [x2,y2], [x3,y3], [x0,y0]], /* border 1
+  ///     [[x4,y4], [x5,y5], [x6,y6], [x4,y4]],          /* hole 1
   ///   ]
   /// }
   const factory GeoGeometry.polygon({
