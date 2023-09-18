@@ -245,10 +245,11 @@ packages:
   shapefile:
     dependency: transitive
     description:
-      name: shapefile
-      sha256: "69a44166d4b56f5e44094b7bf479fd0a6ab43a99ea8e03f5b0d4fb4890a31f3f"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "2b571f23f00107d19ea91295708a43872b8205d9"
+      url: "git@github.com:grAPPfruit/shapefile.git"
+    source: git
     version: "1.0.1"
   sky_engine:
     dependency: transitive

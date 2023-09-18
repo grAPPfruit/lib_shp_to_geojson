@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:archive/archive_io.dart';
@@ -61,8 +62,11 @@ Future<GeoJson?> _parseShpDbfPair(File shpFile, File dbfFile) async {
 
   final Map<String, dynamic> featureCollection;
   try {
-    featureCollection =
-        await shapefile.featureCollection(shpStream, dbf: dbfStream);
+    featureCollection = await shapefile.featureCollection(
+      shpStream,
+      dbf: dbfStream,
+      encoding: const Utf8Codec(allowMalformed: true),
+    );
     print('>>> $shpFile');
     print('>>> $featureCollection');
   } catch (e) {
