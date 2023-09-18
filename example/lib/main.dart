@@ -15,8 +15,8 @@ Future<void> main() async {
 Future<void> _readZipArchives() async {
   final List<GeoJson> geoJsons;
 
-  // final single = await AssetUtils.getFileFromAssets(Assets.single);
-  // geoJsons = await zipToGeoJson(single);
+  final single = await AssetUtils.getFileFromAssets(Assets.eLANNRWSHPExportZip);
+  geoJsons = await zipToGeoJson(single);
 
   // final multi = await AssetUtils.getFileFromAssets(Assets.multi);
   // geoJsons = await zipToGeoJson(multi);
@@ -27,8 +27,8 @@ Future<void> _readZipArchives() async {
   // final broken = await AssetUtils.getFileFromAssets(Assets.missingDbf);
   // geoJsons = await zipToGeoJson(broken);
 
-  final field1 = await AssetUtils.getFileFromAssets(Assets.field1);
-  geoJsons = await zipToGeoJson(field1);
+  // final field1 = await AssetUtils.getFileFromAssets(Assets.field1);
+  // geoJsons = await zipToGeoJson(field1);
 
   print('--- result ---');
   print(geoJsons);

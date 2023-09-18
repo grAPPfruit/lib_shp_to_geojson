@@ -9,11 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shapefile/shapefile.dart' as shapefile;
 
 Future<List<GeoJson>> zipToGeoJson(File zipFile) async {
-  final tempDir = await _getTempDir;
-  final extractionDir = Directory('$tempDir/${zipFile.name}');
-  extractFileToDisk(zipFile.path, extractionDir.path);
+  final extractionDir = await _extractZipToFlatDir(zipFile);
 
-  _flattenDirectory(extractionDir);
   _cleanupFolders(extractionDir);
   _deleteShpFilesWhereDbfFileIsMissing(extractionDir);
 
@@ -40,6 +37,24 @@ Future<List<GeoJson>> zipToGeoJson(File zipFile) async {
   return geoJsons;
 }
 
+Future<Directory> _extractZipToFlatDir(File zipFile) async {
+  final tempDir = (await getTemporaryDirectory()).path;
+  final extractionDir = Directory('$tempDir/${zipFile.name}');
+  extractFileToDisk(zipFile.path, extractionDir.path);
+  _flattenDirectory(extractionDir);
+  return extractionDir;
+}
+
+void _flattenDirectory(Directory dir) {
+  final entities = dir.listSync(recursive: true, followLinks: false);
+  for (final entity in entities) {
+    if (entity is File && entity.path != dir.path) {
+      final targetFile = '${dir.path}/${entity.nameWithExt}';
+      entity.copySync(targetFile);
+    }
+  }
+}
+
 Future<GeoJson?> _parseShpDbfPair(File shpFile, File dbfFile) async {
   final shpStream = shpFile.openRead();
   final dbfStream = dbfFile.openRead();
@@ -48,6 +63,8 @@ Future<GeoJson?> _parseShpDbfPair(File shpFile, File dbfFile) async {
   try {
     featureCollection =
         await shapefile.featureCollection(shpStream, dbf: dbfStream);
+    print('>>> $shpFile');
+    print('>>> $featureCollection');
   } catch (e) {
     debugPrint(
       'error parsing ${shpFile.nameWithExt} or ${dbfFile.nameWithExt}: $e',
@@ -64,18 +81,6 @@ Future<GeoJson?> _parseShpDbfPair(File shpFile, File dbfFile) async {
   }
 
   return geoJson;
-}
-
-Future<String> get _getTempDir async => (await getTemporaryDirectory()).path;
-
-void _flattenDirectory(Directory dir) {
-  final entities = dir.listSync(recursive: true, followLinks: false);
-  for (final entity in entities) {
-    if (entity is File && entity.path != dir.path) {
-      final targetFile = '${dir.path}/${entity.nameWithExt}';
-      entity.copySync(targetFile);
-    }
-  }
 }
 
 void _deleteShpFilesWhereDbfFileIsMissing(Directory dir) {
