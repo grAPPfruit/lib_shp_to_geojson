@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'geo_shape.dart';
+part of '../geo_shape.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GeoShape {
-  @GeoCoordinateConverter()
   List<GeoCoordinate> get coords => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +28,7 @@ abstract class $GeoShapeCopyWith<$Res> {
   factory $GeoShapeCopyWith(GeoShape value, $Res Function(GeoShape) then) =
       _$GeoShapeCopyWithImpl<$Res, GeoShape>;
   @useResult
-  $Res call({@GeoCoordinateConverter() List<GeoCoordinate> coords});
+  $Res call({List<GeoCoordinate> coords});
 }
 
 /// @nodoc
@@ -63,7 +62,7 @@ abstract class _$$_GeoShapeCopyWith<$Res> implements $GeoShapeCopyWith<$Res> {
       __$$_GeoShapeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@GeoCoordinateConverter() List<GeoCoordinate> coords});
+  $Res call({List<GeoCoordinate> coords});
 }
 
 /// @nodoc
@@ -90,14 +89,13 @@ class __$$_GeoShapeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GeoShape with DiagnosticableTreeMixin implements _GeoShape {
-  const _$_GeoShape(
-      {@GeoCoordinateConverter() required final List<GeoCoordinate> coords})
-      : _coords = coords;
+class _$_GeoShape extends _GeoShape {
+  const _$_GeoShape({required final List<GeoCoordinate> coords})
+      : _coords = coords,
+        super._();
 
   final List<GeoCoordinate> _coords;
   @override
-  @GeoCoordinateConverter()
   List<GeoCoordinate> get coords {
     if (_coords is EqualUnmodifiableListView) return _coords;
     // ignore: implicit_dynamic_type
@@ -105,16 +103,8 @@ class _$_GeoShape with DiagnosticableTreeMixin implements _GeoShape {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'GeoShape(coords: $coords)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'GeoShape'))
-      ..add(DiagnosticsProperty('coords', coords));
   }
 
   @override
@@ -136,13 +126,12 @@ class _$_GeoShape with DiagnosticableTreeMixin implements _GeoShape {
       __$$_GeoShapeCopyWithImpl<_$_GeoShape>(this, _$identity);
 }
 
-abstract class _GeoShape implements GeoShape {
-  const factory _GeoShape(
-      {@GeoCoordinateConverter()
-      required final List<GeoCoordinate> coords}) = _$_GeoShape;
+abstract class _GeoShape extends GeoShape {
+  const factory _GeoShape({required final List<GeoCoordinate> coords}) =
+      _$_GeoShape;
+  const _GeoShape._() : super._();
 
   @override
-  @GeoCoordinateConverter()
   List<GeoCoordinate> get coords;
   @override
   @JsonKey(ignore: true)

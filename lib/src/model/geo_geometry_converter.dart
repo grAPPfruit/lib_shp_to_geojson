@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:lib_shp_to_geojson/src/model/geo_coordinate_converter.dart';
 
 import 'geo_coordinate.dart';
 import 'geo_geometry.dart';
@@ -11,8 +10,6 @@ class GeoGeometryConverter implements JsonConverter<GeoGeometry, dynamic> {
 
   @override
   GeoGeometry fromJson(dynamic json) {
-    print(jsonEncode(json));
-
     if (json['type'] != 'Polygon') {
       throw UnsupportedError('Only Polygon is supported');
     }
@@ -21,7 +18,6 @@ class GeoGeometryConverter implements JsonConverter<GeoGeometry, dynamic> {
     }
 
     final jsonShapes = json['coordinates'] as List<List<List<double>>>;
-    print('>>> ${jsonShapes.length}: ${jsonShapes[0].length}');
 
     final border = _mapJsonShape(jsonShapes[0]);
 
@@ -45,7 +41,7 @@ class GeoGeometryConverter implements JsonConverter<GeoGeometry, dynamic> {
 
   List<GeoCoordinate> _coordsToGeoCoords(List<List<double>> borderCoordsJson) {
     return borderCoordsJson
-        .map((e) => GeoCoordinate(lat: e[0], long: e[1]))
+        .map((e) => const GeoCoordinateConverter().fromJson(e))
         .toList(growable: false);
   }
 
@@ -53,22 +49,3 @@ class GeoGeometryConverter implements JsonConverter<GeoGeometry, dynamic> {
   List<List<List<double>>> toJson(GeoGeometry object) =>
       throw UnimplementedError('toJson not implemented');
 }
-
-// chat gpt says:
-// import 'package:proj4dart/proj4dart.dart';
-//
-// void main() {
-//   // Define the UTM projection and WGS84 projection
-//   final utmProjection = Projection.add(Projection.getByName('EPSG:32633'));
-//   final wgs84Projection = Projection.add(Projection.getByName('EPSG:4326'));
-//
-//   // UTM coordinates (zone, easting, northing)
-//   final utmCoordinates = UTM.fromUTM(zone: 33, easting: 500000.0, northing: 4649776.0);
-//
-//   // Convert UTM to decimal degrees
-//   final wgs84Coordinates = utmProjection.transform(wgs84Projection, utmCoordinates);
-//
-//   // Print the result
-//   print('Latitude: ${wgs84Coordinates.lat}');
-//   print('Longitude: ${wgs84Coordinates.lon}');
-// }

@@ -67,8 +67,6 @@ Future<GeoJson?> _parseShpDbfPair(File shpFile, File dbfFile) async {
       dbf: dbfStream,
       encoding: const Utf8Codec(allowMalformed: true),
     );
-    print('>>> $shpFile');
-    print('>>> $featureCollection');
   } catch (e) {
     debugPrint(
       'error parsing ${shpFile.nameWithExt} or ${dbfFile.nameWithExt}: $e',

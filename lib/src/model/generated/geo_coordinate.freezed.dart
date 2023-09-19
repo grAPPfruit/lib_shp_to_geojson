@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'geo_coordinate.dart';
+part of '../geo_coordinate.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,16 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GeoCoordinate _$GeoCoordinateFromJson(Map<String, dynamic> json) {
-  return _GeoCoordinate.fromJson(json);
-}
-
 /// @nodoc
 mixin _$GeoCoordinate {
   double get lat => throw _privateConstructorUsedError;
   double get long => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GeoCoordinateCopyWith<GeoCoordinate> get copyWith =>
       throw _privateConstructorUsedError;
@@ -106,12 +101,9 @@ class __$$_GeoCoordinateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_GeoCoordinate extends _GeoCoordinate {
   const _$_GeoCoordinate({required this.lat, required this.long}) : super._();
-
-  factory _$_GeoCoordinate.fromJson(Map<String, dynamic> json) =>
-      _$$_GeoCoordinateFromJson(json);
 
   @override
   final double lat;
@@ -127,7 +119,6 @@ class _$_GeoCoordinate extends _GeoCoordinate {
             (identical(other.long, long) || other.long == long));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, lat, long);
 
@@ -136,13 +127,6 @@ class _$_GeoCoordinate extends _GeoCoordinate {
   @pragma('vm:prefer-inline')
   _$$_GeoCoordinateCopyWith<_$_GeoCoordinate> get copyWith =>
       __$$_GeoCoordinateCopyWithImpl<_$_GeoCoordinate>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_GeoCoordinateToJson(
-      this,
-    );
-  }
 }
 
 abstract class _GeoCoordinate extends GeoCoordinate {
@@ -150,9 +134,6 @@ abstract class _GeoCoordinate extends GeoCoordinate {
       {required final double lat,
       required final double long}) = _$_GeoCoordinate;
   const _GeoCoordinate._() : super._();
-
-  factory _GeoCoordinate.fromJson(Map<String, dynamic> json) =
-      _$_GeoCoordinate.fromJson;
 
   @override
   double get lat;

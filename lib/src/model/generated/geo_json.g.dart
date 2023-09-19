@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'geo_json.dart';
+part of '../geo_json.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

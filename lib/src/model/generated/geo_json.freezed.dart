@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'geo_json.dart';
+part of '../geo_json.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -123,13 +123,14 @@ class __$$_GeoJsonCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
+class _$_GeoJson extends _GeoJson with DiagnosticableTreeMixin {
   const _$_GeoJson(
       {@JsonKey(name: 'type') required this.type,
       @JsonKey(name: 'bbox') final List<double>? boundingBox,
       @JsonKey(name: 'features') final List<GeoFeature>? features})
       : _boundingBox = boundingBox,
-        _features = features;
+        _features = features,
+        super._();
 
   factory _$_GeoJson.fromJson(Map<String, dynamic> json) =>
       _$$_GeoJsonFromJson(json);
@@ -207,12 +208,13 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
   }
 }
 
-abstract class _GeoJson implements GeoJson {
+abstract class _GeoJson extends GeoJson {
   const factory _GeoJson(
           {@JsonKey(name: 'type') required final String type,
           @JsonKey(name: 'bbox') final List<double>? boundingBox,
           @JsonKey(name: 'features') final List<GeoFeature>? features}) =
       _$_GeoJson;
+  const _GeoJson._() : super._();
 
   factory _GeoJson.fromJson(Map<String, dynamic> json) = _$_GeoJson.fromJson;
 
