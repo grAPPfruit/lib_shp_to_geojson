@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   lib_shp_to_geojson:
     path: ../
-  path_provider: ^2.1.1
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:
