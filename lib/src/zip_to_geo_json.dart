@@ -22,10 +22,11 @@ Future<List<GeoJson>> zipToGeoJson(File zipFile) async {
   final List<GeoJson> geoJsons = [];
 
   for (final shpFile in shpFiles) {
-    final dbfFile =
-        dbfFiles.where((dbfFile) => dbfFile.name == shpFile.name).firstOrNull;
-    // at this point we are sure the dbfFile exists but the compiler does not
-    if (dbfFile == null) {
+    final File dbfFile;
+    try {
+      // at this point we are sure the dbfFile exists but the compiler does not
+      dbfFile = dbfFiles.firstWhere((dbfFile) => dbfFile.name == shpFile.name);
+    } catch (e) {
       continue;
     }
 
@@ -90,14 +91,13 @@ void _deleteShpFilesWhereDbfFileIsMissing(Directory dir) {
   final dbfFiles = dir.getFilesWithEnding('dbf');
 
   for (final shpFile in shpFiles) {
-    final dbfFile =
-        dbfFiles.where((dbfFile) => dbfFile.name == shpFile.name).firstOrNull;
-    if (dbfFile == null) {
+    try {
+      dbfFiles.firstWhere((dbfFile) => dbfFile.name == shpFile.name);
+    } catch (e) {
       debugPrint(
         '${shpFile.nameWithExt} is missing matching dbf file - deleting',
       );
       shpFile.deleteSync();
-      continue;
     }
   }
 }
