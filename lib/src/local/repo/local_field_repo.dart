@@ -42,7 +42,6 @@ class LocalFieldRepo {
     _cleanupFolders(extractionDir);
     _deleteSingleShpAndDbfFiles(extractionDir);
     final localGeoJsons = await _zipToGeoJson(zipFile, extractionDir);
-    debugPrint('>>> found ${localGeoJsons.length} GeoJsons');
     return localGeoJsons
         .map(_mapper.map)
         .expand((e) => e)

@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
           final localFieldRepo = LocalFieldRepo(mapper);
           final fields = await localFieldRepo.importZipFile();
           print('>>> found ${fields.length} fields');
+          print('$fields');
         },
         child: const Text('open zip file'),
       ),
