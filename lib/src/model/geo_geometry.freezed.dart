@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../geo_geometry.dart';
+part of 'geo_geometry.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -145,10 +145,9 @@ class __$$_PolygonCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Polygon extends _Polygon {
+class _$_Polygon implements _Polygon {
   const _$_Polygon({required this.border, final List<GeoShape>? holes})
-      : _holes = holes,
-        super._();
+      : _holes = holes;
 
   @override
   final GeoShape border;
@@ -160,6 +159,11 @@ class _$_Polygon extends _Polygon {
     if (_holes is EqualUnmodifiableListView) return _holes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'GeoGeometry.polygon(border: $border, holes: $holes)';
   }
 
   @override
@@ -238,11 +242,10 @@ class _$_Polygon extends _Polygon {
   }
 }
 
-abstract class _Polygon extends GeoGeometry {
+abstract class _Polygon implements GeoGeometry {
   const factory _Polygon(
       {required final GeoShape border,
       final List<GeoShape>? holes}) = _$_Polygon;
-  const _Polygon._() : super._();
 
   @override
   GeoShape get border;

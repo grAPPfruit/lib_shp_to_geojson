@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../geo_coordinate.dart';
+part of 'geo_coordinate.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GeoCoordinate {
-  double get lat => throw _privateConstructorUsedError;
   double get long => throw _privateConstructorUsedError;
+  double get lat => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GeoCoordinateCopyWith<GeoCoordinate> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $GeoCoordinateCopyWith<$Res> {
           GeoCoordinate value, $Res Function(GeoCoordinate) then) =
       _$GeoCoordinateCopyWithImpl<$Res, GeoCoordinate>;
   @useResult
-  $Res call({double lat, double long});
+  $Res call({double long, double lat});
 }
 
 /// @nodoc
@@ -46,17 +46,17 @@ class _$GeoCoordinateCopyWithImpl<$Res, $Val extends GeoCoordinate>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lat = null,
     Object? long = null,
+    Object? lat = null,
   }) {
     return _then(_value.copyWith(
-      lat: null == lat
-          ? _value.lat
-          : lat // ignore: cast_nullable_to_non_nullable
-              as double,
       long: null == long
           ? _value.long
           : long // ignore: cast_nullable_to_non_nullable
+              as double,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -70,7 +70,7 @@ abstract class _$$_GeoCoordinateCopyWith<$Res>
       __$$_GeoCoordinateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double lat, double long});
+  $Res call({double long, double lat});
 }
 
 /// @nodoc
@@ -84,17 +84,17 @@ class __$$_GeoCoordinateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lat = null,
     Object? long = null,
+    Object? lat = null,
   }) {
     return _then(_$_GeoCoordinate(
-      lat: null == lat
-          ? _value.lat
-          : lat // ignore: cast_nullable_to_non_nullable
-              as double,
       long: null == long
           ? _value.long
           : long // ignore: cast_nullable_to_non_nullable
+              as double,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -102,25 +102,30 @@ class __$$_GeoCoordinateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GeoCoordinate extends _GeoCoordinate {
-  const _$_GeoCoordinate({required this.lat, required this.long}) : super._();
+class _$_GeoCoordinate implements _GeoCoordinate {
+  const _$_GeoCoordinate({required this.long, required this.lat});
 
   @override
-  final double lat;
-  @override
   final double long;
+  @override
+  final double lat;
+
+  @override
+  String toString() {
+    return 'GeoCoordinate(long: $long, lat: $lat)';
+  }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GeoCoordinate &&
-            (identical(other.lat, lat) || other.lat == lat) &&
-            (identical(other.long, long) || other.long == long));
+            (identical(other.long, long) || other.long == long) &&
+            (identical(other.lat, lat) || other.lat == lat));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, lat, long);
+  int get hashCode => Object.hash(runtimeType, long, lat);
 
   @JsonKey(ignore: true)
   @override
@@ -129,16 +134,15 @@ class _$_GeoCoordinate extends _GeoCoordinate {
       __$$_GeoCoordinateCopyWithImpl<_$_GeoCoordinate>(this, _$identity);
 }
 
-abstract class _GeoCoordinate extends GeoCoordinate {
+abstract class _GeoCoordinate implements GeoCoordinate {
   const factory _GeoCoordinate(
-      {required final double lat,
-      required final double long}) = _$_GeoCoordinate;
-  const _GeoCoordinate._() : super._();
+      {required final double long,
+      required final double lat}) = _$_GeoCoordinate;
 
   @override
-  double get lat;
-  @override
   double get long;
+  @override
+  double get lat;
   @override
   @JsonKey(ignore: true)
   _$$_GeoCoordinateCopyWith<_$_GeoCoordinate> get copyWith =>

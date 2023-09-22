@@ -14,6 +14,8 @@ class Assets {
 
   static const String eLANNRWSHPExportJson = 'assets/ELAN-NRW-SHP-Export.json';
   static const String eLANNRWSHPExportZip = 'assets/ELAN-NRW-SHP-Export.zip';
+  static const String elanShp = 'assets/ELAN-SHP.zip';
+  static const String ts000378610 = 'assets/TS_000378610.json';
   static const String field1 = 'assets/field_1.zip';
   static const String missingDbf = 'assets/missing_dbf.zip';
   static const String multi = 'assets/multi.zip';
@@ -24,6 +26,8 @@ class Assets {
   List<String> get values => [
         eLANNRWSHPExportJson,
         eLANNRWSHPExportZip,
+        elanShp,
+        ts000378610,
         field1,
         missingDbf,
         multi,

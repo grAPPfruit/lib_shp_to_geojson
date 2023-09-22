@@ -39,8 +39,8 @@ class GeoGeometryConverter implements JsonConverter<GeoGeometry, dynamic> {
     return GeoShape(coords: _coordsToGeoCoords(jsonShapes));
   }
 
-  List<GeoCoordinate> _coordsToGeoCoords(List<List<double>> borderCoordsJson) {
-    return borderCoordsJson
+  List<GeoCoordinate> _coordsToGeoCoords(List<List<double>> coordsJson) {
+    return coordsJson
         .map((e) => const GeoCoordinateConverter().fromJson(e))
         .toList(growable: false);
   }

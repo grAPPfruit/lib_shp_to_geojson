@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../geo_shape.dart';
+part of 'geo_shape.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -89,10 +89,9 @@ class __$$_GeoShapeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GeoShape extends _GeoShape {
+class _$_GeoShape implements _GeoShape {
   const _$_GeoShape({required final List<GeoCoordinate> coords})
-      : _coords = coords,
-        super._();
+      : _coords = coords;
 
   final List<GeoCoordinate> _coords;
   @override
@@ -126,10 +125,9 @@ class _$_GeoShape extends _GeoShape {
       __$$_GeoShapeCopyWithImpl<_$_GeoShape>(this, _$identity);
 }
 
-abstract class _GeoShape extends GeoShape {
+abstract class _GeoShape implements GeoShape {
   const factory _GeoShape({required final List<GeoCoordinate> coords}) =
       _$_GeoShape;
-  const _GeoShape._() : super._();
 
   @override
   List<GeoCoordinate> get coords;

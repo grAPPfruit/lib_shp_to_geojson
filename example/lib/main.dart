@@ -15,7 +15,7 @@ Future<void> main() async {
 Future<void> _readZipArchives() async {
   final List<GeoJson> geoJsons;
 
-  final single = await AssetUtils.getFileFromAssets(Assets.eLANNRWSHPExportZip);
+  final single = await AssetUtils.getFileFromAssets(Assets.elanShp);
   geoJsons = await zipToGeoJson(single);
 
   // final multi = await AssetUtils.getFileFromAssets(Assets.multi);

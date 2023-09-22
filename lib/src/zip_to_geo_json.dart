@@ -10,8 +10,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shapefile/shapefile.dart' as shapefile;
 
 Future<List<GeoJson>> zipToGeoJson(File zipFile) async {
-  final extractionDir = await _extractZipToFlatDir(zipFile);
+  final extractionDir = await _extractZipToTempDir(zipFile);
 
+  _flattenDirectory(extractionDir);
   _cleanupFolders(extractionDir);
   _deleteShpFilesWhereDbfFileIsMissing(extractionDir);
 
@@ -39,18 +40,20 @@ Future<List<GeoJson>> zipToGeoJson(File zipFile) async {
   return geoJsons;
 }
 
-Future<Directory> _extractZipToFlatDir(File zipFile) async {
+Future<Directory> _extractZipToTempDir(File zipFile) async {
   final tempDir = (await getTemporaryDirectory()).path;
   final extractionDir = Directory('$tempDir/${zipFile.name}');
+  if (extractionDir.existsSync()) {
+    extractionDir.deleteSync(recursive: true);
+  }
   extractFileToDisk(zipFile.path, extractionDir.path);
-  _flattenDirectory(extractionDir);
   return extractionDir;
 }
 
 void _flattenDirectory(Directory dir) {
   final entities = dir.listSync(recursive: true, followLinks: false);
   for (final entity in entities) {
-    if (entity is File && entity.path != dir.path) {
+    if (entity is File && entity.parent.path != dir.path) {
       final targetFile = '${dir.path}/${entity.nameWithExt}';
       entity.copySync(targetFile);
     }
@@ -69,9 +72,7 @@ Future<GeoJson?> _parseShpDbfPair(File shpFile, File dbfFile) async {
       encoding: const Utf8Codec(allowMalformed: true),
     );
   } catch (e) {
-    debugPrint(
-      'error parsing ${shpFile.nameWithExt} or ${dbfFile.nameWithExt}: $e',
-    );
+    debugPrint('error parsing ${shpFile.name}: $e');
     return null;
   }
 

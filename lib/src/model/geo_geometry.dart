@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'geo_shape.dart';
 
-part 'generated/geo_geometry.freezed.dart';
+part 'geo_geometry.freezed.dart';
 
 /// A Geometry object represents points, curves, and surfaces in
 /// coordinate space. Every Geometry object is a GeoJSON object no
@@ -15,8 +15,6 @@ part 'generated/geo_geometry.freezed.dart';
 /// currently only "Polygon" is supported
 @freezed
 class GeoGeometry with _$GeoGeometry {
-  const GeoGeometry._();
-
   /// example:
   ///
   /// {
@@ -31,8 +29,4 @@ class GeoGeometry with _$GeoGeometry {
     required GeoShape border,
     List<GeoShape>? holes,
   }) = _Polygon;
-
-  @override
-  String toString() =>
-      'Polygon(${border.coords.length - 1} points${holes?.isEmpty ?? true ? ')' : ', ${holes!.length} holes)'}';
 }
