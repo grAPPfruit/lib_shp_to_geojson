@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'geo_json.dart';
+part of 'local_geo_json.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,39 +14,41 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GeoJson _$GeoJsonFromJson(Map<String, dynamic> json) {
-  return _GeoJson.fromJson(json);
+LocalGeoJson _$LocalGeoJsonFromJson(Map<String, dynamic> json) {
+  return _LocalGeoJson.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GeoJson {
+mixin _$LocalGeoJson {
   @JsonKey(name: 'type')
-  String get type => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'bbox')
   List<double>? get boundingBox => throw _privateConstructorUsedError;
   @JsonKey(name: 'features')
-  List<GeoFeature>? get features => throw _privateConstructorUsedError;
+  List<LocalGeoFeature>? get features => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GeoJsonCopyWith<GeoJson> get copyWith => throw _privateConstructorUsedError;
+  $LocalGeoJsonCopyWith<LocalGeoJson> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GeoJsonCopyWith<$Res> {
-  factory $GeoJsonCopyWith(GeoJson value, $Res Function(GeoJson) then) =
-      _$GeoJsonCopyWithImpl<$Res, GeoJson>;
+abstract class $LocalGeoJsonCopyWith<$Res> {
+  factory $LocalGeoJsonCopyWith(
+          LocalGeoJson value, $Res Function(LocalGeoJson) then) =
+      _$LocalGeoJsonCopyWithImpl<$Res, LocalGeoJson>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') String type,
+      {@JsonKey(name: 'type') String? type,
       @JsonKey(name: 'bbox') List<double>? boundingBox,
-      @JsonKey(name: 'features') List<GeoFeature>? features});
+      @JsonKey(name: 'features') List<LocalGeoFeature>? features});
 }
 
 /// @nodoc
-class _$GeoJsonCopyWithImpl<$Res, $Val extends GeoJson>
-    implements $GeoJsonCopyWith<$Res> {
-  _$GeoJsonCopyWithImpl(this._value, this._then);
+class _$LocalGeoJsonCopyWithImpl<$Res, $Val extends LocalGeoJson>
+    implements $LocalGeoJsonCopyWith<$Res> {
+  _$LocalGeoJsonCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -56,15 +58,15 @@ class _$GeoJsonCopyWithImpl<$Res, $Val extends GeoJson>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? type = freezed,
     Object? boundingBox = freezed,
     Object? features = freezed,
   }) {
     return _then(_value.copyWith(
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       boundingBox: freezed == boundingBox
           ? _value.boundingBox
           : boundingBox // ignore: cast_nullable_to_non_nullable
@@ -72,43 +74,45 @@ class _$GeoJsonCopyWithImpl<$Res, $Val extends GeoJson>
       features: freezed == features
           ? _value.features
           : features // ignore: cast_nullable_to_non_nullable
-              as List<GeoFeature>?,
+              as List<LocalGeoFeature>?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_GeoJsonCopyWith<$Res> implements $GeoJsonCopyWith<$Res> {
-  factory _$$_GeoJsonCopyWith(
-          _$_GeoJson value, $Res Function(_$_GeoJson) then) =
-      __$$_GeoJsonCopyWithImpl<$Res>;
+abstract class _$$_LocalGeoJsonCopyWith<$Res>
+    implements $LocalGeoJsonCopyWith<$Res> {
+  factory _$$_LocalGeoJsonCopyWith(
+          _$_LocalGeoJson value, $Res Function(_$_LocalGeoJson) then) =
+      __$$_LocalGeoJsonCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') String type,
+      {@JsonKey(name: 'type') String? type,
       @JsonKey(name: 'bbox') List<double>? boundingBox,
-      @JsonKey(name: 'features') List<GeoFeature>? features});
+      @JsonKey(name: 'features') List<LocalGeoFeature>? features});
 }
 
 /// @nodoc
-class __$$_GeoJsonCopyWithImpl<$Res>
-    extends _$GeoJsonCopyWithImpl<$Res, _$_GeoJson>
-    implements _$$_GeoJsonCopyWith<$Res> {
-  __$$_GeoJsonCopyWithImpl(_$_GeoJson _value, $Res Function(_$_GeoJson) _then)
+class __$$_LocalGeoJsonCopyWithImpl<$Res>
+    extends _$LocalGeoJsonCopyWithImpl<$Res, _$_LocalGeoJson>
+    implements _$$_LocalGeoJsonCopyWith<$Res> {
+  __$$_LocalGeoJsonCopyWithImpl(
+      _$_LocalGeoJson _value, $Res Function(_$_LocalGeoJson) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? type = freezed,
     Object? boundingBox = freezed,
     Object? features = freezed,
   }) {
-    return _then(_$_GeoJson(
-      type: null == type
+    return _then(_$_LocalGeoJson(
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       boundingBox: freezed == boundingBox
           ? _value._boundingBox
           : boundingBox // ignore: cast_nullable_to_non_nullable
@@ -116,27 +120,27 @@ class __$$_GeoJsonCopyWithImpl<$Res>
       features: freezed == features
           ? _value._features
           : features // ignore: cast_nullable_to_non_nullable
-              as List<GeoFeature>?,
+              as List<LocalGeoFeature>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
-  const _$_GeoJson(
-      {@JsonKey(name: 'type') required this.type,
+class _$_LocalGeoJson with DiagnosticableTreeMixin implements _LocalGeoJson {
+  const _$_LocalGeoJson(
+      {@JsonKey(name: 'type') this.type,
       @JsonKey(name: 'bbox') final List<double>? boundingBox,
-      @JsonKey(name: 'features') final List<GeoFeature>? features})
+      @JsonKey(name: 'features') final List<LocalGeoFeature>? features})
       : _boundingBox = boundingBox,
         _features = features;
 
-  factory _$_GeoJson.fromJson(Map<String, dynamic> json) =>
-      _$$_GeoJsonFromJson(json);
+  factory _$_LocalGeoJson.fromJson(Map<String, dynamic> json) =>
+      _$$_LocalGeoJsonFromJson(json);
 
   @override
   @JsonKey(name: 'type')
-  final String type;
+  final String? type;
   final List<double>? _boundingBox;
   @override
   @JsonKey(name: 'bbox')
@@ -148,10 +152,10 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<GeoFeature>? _features;
+  final List<LocalGeoFeature>? _features;
   @override
   @JsonKey(name: 'features')
-  List<GeoFeature>? get features {
+  List<LocalGeoFeature>? get features {
     final value = _features;
     if (value == null) return null;
     if (_features is EqualUnmodifiableListView) return _features;
@@ -161,14 +165,14 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GeoJson(type: $type, boundingBox: $boundingBox, features: $features)';
+    return 'LocalGeoJson(type: $type, boundingBox: $boundingBox, features: $features)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'GeoJson'))
+      ..add(DiagnosticsProperty('type', 'LocalGeoJson'))
       ..add(DiagnosticsProperty('type', type))
       ..add(DiagnosticsProperty('boundingBox', boundingBox))
       ..add(DiagnosticsProperty('features', features));
@@ -178,7 +182,7 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GeoJson &&
+            other is _$_LocalGeoJson &&
             (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality()
                 .equals(other._boundingBox, _boundingBox) &&
@@ -196,37 +200,38 @@ class _$_GeoJson with DiagnosticableTreeMixin implements _GeoJson {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GeoJsonCopyWith<_$_GeoJson> get copyWith =>
-      __$$_GeoJsonCopyWithImpl<_$_GeoJson>(this, _$identity);
+  _$$_LocalGeoJsonCopyWith<_$_LocalGeoJson> get copyWith =>
+      __$$_LocalGeoJsonCopyWithImpl<_$_LocalGeoJson>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GeoJsonToJson(
+    return _$$_LocalGeoJsonToJson(
       this,
     );
   }
 }
 
-abstract class _GeoJson implements GeoJson {
-  const factory _GeoJson(
-          {@JsonKey(name: 'type') required final String type,
+abstract class _LocalGeoJson implements LocalGeoJson {
+  const factory _LocalGeoJson(
+          {@JsonKey(name: 'type') final String? type,
           @JsonKey(name: 'bbox') final List<double>? boundingBox,
-          @JsonKey(name: 'features') final List<GeoFeature>? features}) =
-      _$_GeoJson;
+          @JsonKey(name: 'features') final List<LocalGeoFeature>? features}) =
+      _$_LocalGeoJson;
 
-  factory _GeoJson.fromJson(Map<String, dynamic> json) = _$_GeoJson.fromJson;
+  factory _LocalGeoJson.fromJson(Map<String, dynamic> json) =
+      _$_LocalGeoJson.fromJson;
 
   @override
   @JsonKey(name: 'type')
-  String get type;
+  String? get type;
   @override
   @JsonKey(name: 'bbox')
   List<double>? get boundingBox;
   @override
   @JsonKey(name: 'features')
-  List<GeoFeature>? get features;
+  List<LocalGeoFeature>? get features;
   @override
   @JsonKey(ignore: true)
-  _$$_GeoJsonCopyWith<_$_GeoJson> get copyWith =>
+  _$$_LocalGeoJsonCopyWith<_$_LocalGeoJson> get copyWith =>
       throw _privateConstructorUsedError;
 }

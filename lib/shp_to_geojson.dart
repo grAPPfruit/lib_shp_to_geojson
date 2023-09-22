@@ -1,4 +1,4 @@
 library lib_shp_to_geojson;
 
-export 'src/model/model.dart';
-export 'src/zip_to_geo_json.dart';
+export 'src/local/mapper.dart';
+export 'src/local/repo.dart';

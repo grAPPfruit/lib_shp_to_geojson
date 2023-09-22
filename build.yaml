@@ -8,8 +8,8 @@ targets:
     builders:
       source_gen|combining_builder:
         generate_for:
-          - lib/src/model/**.dart
+          - lib/src/*/**.dart
       freezed|freezed:
         generate_for:
-          - lib/src/model/**.dart
+          - lib/src/*/**.dart
         enabled: true
