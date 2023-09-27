@@ -16,11 +16,24 @@ class HomePage extends StatelessWidget {
     return Center(
       child: ElevatedButton(
         onPressed: () async {
-          final mapper = LocalGeoJsonMapper();
-          final localFieldRepo = LocalFieldRepo(mapper);
-          final fields = await localFieldRepo.importZipFile();
-          print('>>> found ${fields.length} fields');
-          print('$fields');
+          final propertyFieldNameMapper = LocalPropertyFieldNameMapper();
+          final geoJsonMapper = LocalGeoJsonMapper(propertyFieldNameMapper);
+          final resultMapper = LocalShpFileMapper(geoJsonMapper);
+          final localFieldRepo = LocalFieldRepo(resultMapper);
+
+          final importResult = await localFieldRepo.importShpFilesFromZip();
+          print(
+              '${importResult.totalFeatures} => ${importResult.usableFields} / ${importResult.unusableFeatures}');
+
+          if (importResult.hasShpFiles) {
+            for (final shpFile in importResult.shpFiles!) {
+              print(
+                  '>>> ${shpFile.fileName} has ${shpFile.usableFields} usable fields');
+              if (shpFile.hasFields) {
+                print(' >>> ${shpFile.fields!.first.name}');
+              }
+            }
+          }
         },
         child: const Text('open zip file'),
       ),

@@ -1,18 +1,23 @@
 import 'package:lib_shp_to_geojson/src/domain/model.dart';
 import 'package:lib_shp_to_geojson/src/domain/model/lat_long.dart';
 import 'package:lib_shp_to_geojson/src/domain/model/polygon.dart';
+import 'package:lib_shp_to_geojson/src/local/mapper/local_property_field_name_mapper.dart';
 import 'package:lib_shp_to_geojson/src/local/model.dart';
 import 'package:proj4dart/proj4dart.dart';
 
 class LocalGeoJsonMapper {
-  List<Field> map(LocalGeoJson from) =>
+  final LocalPropertyFieldNameMapper _fieldNameMapper;
+
+  LocalGeoJsonMapper(this._fieldNameMapper);
+
+  List<Field> map(LocalGeoJson from, String esriProjection) =>
       from.features
-          ?.map(_mapField)
+          ?.map((e) => _mapField(e, esriProjection))
           .whereType<Field>()
           .toList(growable: false) ??
       [];
 
-  Field? _mapField(LocalGeoFeature feature) {
+  Field? _mapField(LocalGeoFeature feature, String esriProjection) {
     if (feature.type != 'Feature') {
       return null;
     }
@@ -24,34 +29,36 @@ class LocalGeoJsonMapper {
       return null;
     }
 
-    final border = _mapPolygon(coords.first);
+    final border = _mapPolygon(coords.first, esriProjection);
     if (border == null) {
       return null;
     }
 
     final holes = coords
         .skip(1)
-        .map(_mapPolygon)
+        .map((e) => _mapPolygon(e, esriProjection))
         .whereType<Polygon>()
         .toList(growable: false);
 
     return Field(
-      name: null, // TODO: get name from properties per state
+      name: _fieldNameMapper.map(feature.properties),
       border: border,
       holes: holes,
     );
   }
 
-  Polygon? _mapPolygon(List<List<double>> coords) {
+  Polygon? _mapPolygon(List<List<double>> coords, String esriProjection) {
     final isValid = coords.every((e) => e.length == 2);
     if (!isValid) {
       return null;
     }
-    final points = coords.map(_mapLatLong).toList(growable: false);
+    final points = coords
+        .map((e) => _mapLatLong(e, esriProjection))
+        .toList(growable: false);
     return Polygon(points: points);
   }
 
-  LatLong _mapLatLong(List<double> coords) {
+  LatLong _mapLatLong(List<double> coords, String esriProjection) {
     final lat = coords[0];
     final long = coords[1];
 
@@ -61,21 +68,14 @@ class LocalGeoJsonMapper {
       return LatLong(long: long, lat: lat);
     }
 
-    final projPoint = _transformToLatLng(lat, long);
+    final projPoint = _transformToLatLng(lat, long, esriProjection);
     return LatLong(lat: projPoint.y, long: projPoint.x);
   }
 
-  Point _transformToLatLng(double lat, double long) {
+  Point _transformToLatLng(double lat, double long, String esriProjection) {
     final point = Point(x: lat, y: long);
-    // TODO: get from prj file
-    final projSrc = Projection.get('EPSG25832') ??
-        Projection.add(
-          'EPSG25832',
-          '''
-          PROJCS["ETRS89 / UTM zone 32N",GEOGCS["ETRS89",DATUM["D_ETRS_1989",SPHEROID["GRS_1980",6378137,298.257222101]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",9],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],UNIT["Meter",1],AUTHORITY["EPSG","25832"]]
-          '''
-              .replaceAll('\'', ''),
-        );
+    final projSrc = Projection.get(esriProjection) ??
+        Projection.add(esriProjection, esriProjection.replaceAll('\'', ''));
     return projSrc.transform(Projection.WGS84, point);
   }
 }
